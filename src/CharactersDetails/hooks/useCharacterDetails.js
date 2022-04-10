@@ -1,18 +1,17 @@
 import {useEffect, useState} from 'react';
 
-
-const useCharatersList = () => {
-    const [characters, setCharacters] = useState([]);
+const useCharatersDetails = (id) => {
+    const [details, setDetails] = useState([]);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
 
-    const fetchCharacters = async () => {
+    const fetchCharactersDetails = async () => {
         setLoading(true);
         setError(null);
         try {
-            const response = await fetch('https://www.breakingbadapi.com/api/characters');
+            const response = await fetch(`https://www.breakingbadapi.com/api/characters/${id}`);
             const data = await response.json();
-            setCharacters(data);
+            setDetails(data[0]);
         } catch (error) {
             setError(error);
         }
@@ -21,10 +20,10 @@ const useCharatersList = () => {
     };
 
     useEffect(() => {
-        fetchCharacters();
+        fetchCharactersDetails();
     }, []);
 
-    return { characters, loading, error };
+    return { details, loading, error };
 };
 
-export  default useCharatersList;
+export  default useCharatersDetails;
