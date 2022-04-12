@@ -1,28 +1,25 @@
-import {useEffect, useState} from 'react';
+import {useEffect, useReducer} from 'react';
+import {initialState, reducer} from '../reducer';
+import * as Services from '../services/api';
 
-
-const useCharactersList = () => {
-    const [characters, setCharacters] = useState([]);
-    const [loading, setLoading] = useState(false);
-    const [error, setError] = useState(null);
+const useCharactersList = ({limit = 10, offset= 0}) => {
+    const [{characters, loading, error }, dispatch] = useReducer(reducer, initialState  );
 
     const fetchCharacters = async () => {
-        setLoading(true);
-        setError(null);
+        dispatch({ type: 'FETCH_CHARACTERS_START' });
         try {
-            const response = await fetch('https://www.breakingbadapi.com/api/characters?limit=10&offset=0');
+            const response =  await Services.getCharacters({limit, offset});
             const data = await response.json();
-            setCharacters(data);
-        } catch (error) {
-            setError(error);
-        }
+            dispatch({ type: 'FETCH_CHARACTERS_SUCCESS', payload: data });
 
-        setLoading(false);
+        } catch (error) {
+            dispatch({ type: 'FETCH_CHARACTERS_FAILURE', payload: error.message });
+        }
     };
 
     useEffect(() => {
         fetchCharacters();
-    }, []);
+    }, [offset]);
 
     return { characters, loading, error };
 };
