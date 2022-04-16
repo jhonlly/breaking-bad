@@ -7,12 +7,9 @@ import {Spinner} from '../shared/components';
 function CharactersDetails({params: {id}}) {
 
     const { details , quote, error, loading } = useCharactersDetails(id);
-
+    console.warn({error});
     return (
         <div className="container m-3 grid grid-cols-2">
-            <When condition={error !== null}>
-                <p>Error al cargar los datos</p>
-            </When>
             <When condition={loading}>
                 <Spinner/>
             </When>
@@ -27,20 +24,20 @@ function CharactersDetails({params: {id}}) {
                     </div>
                     <div>
                         <p>Portrayed: {details.portrayed}</p>
-                    </div>
-                    <div>
-                        <p>Status: {details.status}</p>
-                    </div>
-                    <div>
-                        <p>Fecha de nacimiento: {details.birthday}</p>
-                    </div>
-                    <div>
-                        <When condition={quote.length > 0}>
-                            <p>{quote[0]?.quote}</p>
-                        </When>
-                        <When condition={quote.length === 0}>
-                            <p>No hay quotes</p>
-                        </When>
+                        <div>
+                            <p>Status: {details.status}</p>
+                        </div>
+                        <div>
+                            <p>Fecha de nacimiento: {details.birthday}</p>
+                        </div>
+                        <div>
+                            <When condition={quote.length > 0}>
+                                <p>{quote[0]?.quote}</p>
+                            </When>
+                            <When condition={quote.length === 0}>
+                                <p>No hay quotes</p>
+                            </When>
+                        </div>
                     </div>
                 </div>
             </When>
