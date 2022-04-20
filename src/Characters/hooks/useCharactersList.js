@@ -1,9 +1,9 @@
 import {useEffect, useReducer} from 'react';
-import {initialState, reducer} from '../reducer';
+import {initialState, CharactersReducer} from '../CharactersReducer';
 import * as Services from '../services/api';
 
 const useCharactersList = ({limit = 10, offset= 0}) => {
-    const [{characters, loading, error }, dispatch] = useReducer(reducer, initialState  );
+    const [{characters, loading, error }, dispatch] = useReducer(CharactersReducer, initialState  );
 
     const fetchCharacters = async () => {
         dispatch({ type: 'FETCH_CHARACTERS_START' });

@@ -1,5 +1,5 @@
 import React from 'react';
-import CharactersList from './Characters';
+import Characters from './Characters';
 import { Route, Switch} from 'wouter';
 import CharactersDetails from './CharactersDetails';
 import {Title} from './shared/components';
@@ -12,8 +12,8 @@ function App() {
             <LanguageProvider>
                 <Title />
                 <Switch>
-                    <Route path="*" component={CharactersList}/>
-                    <Route path="/" component={CharactersList} />
+                    <Route path="*" component={Characters}/>
+                    <Route path="/" component={Characters} />
                     <Route path="/characters/:id" component={CharactersDetails} />
                 </Switch>
             </LanguageProvider>

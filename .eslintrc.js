@@ -2,7 +2,8 @@
 module.exports = {
     'env': {
         'browser': true,
-        'es2021': true
+        'es2021': true,
+        'jest': true,
     },
     'extends': [
         'eslint:recommended',
@@ -17,6 +18,7 @@ module.exports = {
     },
     'plugins': [
         'react'
+
     ],
     'rules': {
         'no-console': 'off',

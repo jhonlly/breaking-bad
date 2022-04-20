@@ -1,4 +1,4 @@
-import { get } from '../../shared/services/apiMethods';
+import { get } from '../../shared/services/utlis';
 
 const getDetails = ( id) => {
     return get(`characters/${id}`);

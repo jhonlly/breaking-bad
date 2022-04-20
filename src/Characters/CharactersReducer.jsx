@@ -1,5 +1,3 @@
-
-
 const initialState = {
     characters: [],
     loading: false,
@@ -8,7 +6,7 @@ const initialState = {
 };
 
 
-const reducer = (state, action) => {
+const CharactersReducer = (state, action) => {
     switch (action.type) {
     case 'FETCH_CHARACTERS_START':
         return {
@@ -32,4 +30,4 @@ const reducer = (state, action) => {
     }
 };
 
-export  {reducer, initialState};
+export  {CharactersReducer, initialState};

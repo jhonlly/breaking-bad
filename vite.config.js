@@ -3,7 +3,6 @@ import react from '@vitejs/plugin-react';
 // eslint-disable-next-line no-undef
 const path = require('path');
 
-// https://vitejs.dev/config/
 export default defineConfig({
     resolve: {
         alias: {
@@ -14,5 +13,5 @@ export default defineConfig({
     server: {
         port: 3002,
     },
-    plugins: [react()]
+    plugins: [react()],
 });

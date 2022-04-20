@@ -1,15 +1,15 @@
 import React from 'react';
 import useCharactersList from './hooks/useCharactersList';
 import {Spinner} from '../shared/components';
-import {useLocation} from 'wouter';
 import {SearchField} from './components/SearchField';
 import When from '../shared/components/condicional/When';
 import { useTranslations } from '../shared/context/LanguageContext';
+import CharacterCard  from './components/CharacterCard';
 
-function CharactersList() {
+function Characters() {
     const [offset, setOffset]  =  React.useState(0);
     const [limit]  =  React.useState(10);
-    const [,setLocation] = useLocation();
+
     const [search, setSearch] = React.useState('');
     const {characters,loading } = useCharactersList({offset, limit});
     
@@ -29,24 +29,22 @@ function CharactersList() {
         <>
             <SearchField onChange={onSearch} value={search}/>
             <When condition={loading}>
-                <div className='content-center grid col-auto'>
+                <div className='grid place-content-center place-items-center h-screen col-auto '>
                     <Spinner/>
                 </div>
             </When>
             <When condition={!loading}>
-                <div className=" mx-auto px-4 grid content-center grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-2 ">
+                <div className="mx-auto px-4 grid grid-cols-1 place-items-center sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-2 ">
                     {characters?.map(({char_id, name, nickname, img, birthday}) => (
-                        <div className="container flex flex-col w-60 h-50 bg-gray-50 rounded border-2 border-gray-900 shadow-md hover:opacity-90" key={char_id}
-                            onClick={() => setLocation(`/characters/${char_id}`)}>
-                            <img loading="lazy" className="object-contain rounded-t-sm h-50   md:h-auto" src={img}/>
-                            <div className="flex flex-col ml-2 mt-1 h-100 bg-amber-50">
-                                <p className="text-lg font-bold text-gray-700">{name}</p>
-                                <p className="ml-2 italic">{nickname}</p>
-                                <p className="self-end bg-amber-200">{birthday}</p>
-                            </div>
-                        </div>
+                        <CharacterCard
+                            key={char_id}
+                            char_id={char_id || 12}
+                            img={img}
+                            name={name}
+                            nickname={nickname}
+                            birthday={birthday}
+                        />
                     ))}
-
                 </div>
             </When>
             {!loading &&
@@ -64,4 +62,5 @@ function CharactersList() {
     );
 }
 
-export default CharactersList;
+export default Characters;
+
