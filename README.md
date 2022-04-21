@@ -1,4 +1,4 @@
-# Breaking Bad App
+# [Breaking Bad App](https://breaking-bad-app22.netlify.app/)
 Aplicación para listar y ver detalles de todos los personajes de las series.
 
 ## Puesta en marcha de la app:
@@ -16,7 +16,7 @@ Aplicación para listar y ver detalles de todos los personajes de las series.
  - **Eslint**: Para el estilo del código.
  - **React Testing Library**: Para realizar los tests.
  
-## Organización de app:
+## Organización de la app:
   La estructura de la aplicación esta organizada en una carpeta llamada **src**, dentro de esta carpeta se encuentran las carpetas **Characters** (*en esta carpeta se encuentran todo los componentes de la lista de personajes*), **CharactersDetails**, **shared**(*En esta carpeta se encuentran todos los componentes y servicios que comparten los componentes.*).
 
   - **Characters**:

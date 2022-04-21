@@ -6,6 +6,5 @@ describe('useCounter', () => {
         const { result } = renderHook(() =>  useCharactersList({ limit: 10, offset: 0 }));
         const { characters } = result.current;
         expect(characters).toEqual([]);     
-        expect(1).toBe(1);
     });
 });
