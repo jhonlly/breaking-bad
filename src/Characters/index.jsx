@@ -1,9 +1,9 @@
 import React from 'react';
 import useCharactersList from './hooks/useCharactersList';
-import { Spinner } from '../shared/components';
+import { Spinner } from '../Shared/components';
 import { SearchField } from './components/SearchField';
-import When from '../shared/components/condicional/When';
-import { useTranslations } from '../shared/context/LanguageContext';
+import When from '../Shared/components/condicional/When';
+import { useTranslations } from '../Shared/context/TranslationsContext';
 import CharacterCard  from './components/CharacterCard';
 
 function Characters() {

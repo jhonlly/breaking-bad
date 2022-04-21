@@ -3,13 +3,16 @@ import useCharactersDetails from './hooks/useCharacterDetails';
 import PropTypes from 'prop-types';
 import When from '../shared/components/condicional/When';
 import {Spinner} from '../shared/components';
+import { useTranslations } from '../Shared/context/TranslationsContext';
+import BackButton from '../Characters/components/BackButton';
 
-function CharactersDetails({params: {id}}) {
+const CharactersDetails = ({params: {id}}) => {
 
     const { details , quote, error, loading } = useCharactersDetails(id);
-    console.warn({error});
+    const { translations: { translations: t}} = useTranslations();
+
     return (
-        <div className="container m-3 grid grid-cols-2">
+        <div className="container place-content-center place-items-center m-3 grid grid-cols-2">
             <When condition={loading}>
                 <Spinner/>
             </When>
@@ -23,27 +26,28 @@ function CharactersDetails({params: {id}}) {
                         <p>{details?.occupation?.map((ocupation, index) => <span key={`${ocupation}-${index}`}>{ocupation}</span>)}</p>
                     </div>
                     <div>
-                        <p>Portrayed: {details.portrayed}</p>
+                        <p>{t.portrayed}: {details.portrayed}</p>
                         <div>
-                            <p>Status: {details.status}</p>
+                            <p>{t.status}: {details.status}</p>
                         </div>
                         <div>
-                            <p>Fecha de nacimiento: {details.birthday}</p>
+                            <p>{t.birthday}: {details.birthday}</p>
                         </div>
                         <div>
                             <When condition={quote.length > 0}>
-                                <p>{quote[0]?.quote}</p>
+                                <p>{t.quote}: {quote[0]?.quote}</p>
                             </When>
                             <When condition={quote.length === 0}>
-                                <p>No hay quotes</p>
+                                <p>{t.noQuotes}</p>
                             </When>
                         </div>
                     </div>
+                    <BackButton text={t.back}/>  
                 </div>
             </When>
         </div>
     );
-}
+};
 
 CharactersDetails.propTypes = {
     params: PropTypes.shape({

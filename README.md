@@ -5,7 +5,6 @@ Aplicación para listar y ver detalles de todos los personajes de las series.
  - Realizar un npm install del proyecto.
  - Ejecutar **npm run dev** para ejecutar el proyecto en modo desarrollo.
  - Ejecutar **npm run build** para ejecutar el proyecto en modo producción.
- - Ejecutar **npm run test** para ejecutar los tests.
 
 
 ## Tecnologías frontend usadas:
@@ -38,3 +37,6 @@ Aplicación para listar y ver detalles de todos los personajes de las series.
     - **components**: En esta carpeta se encuentran los componentes que se usan en el header y footer.
     - **context**: En esta carpeta se encuentra el context que se usa para guardar la cadena de idioma.
     - **service**: En esta carpeta están las funciones que realizan llamas a la API.
+
+## Futuras implementaciones:
+- Implementar la búsqueda de personajes por nombre.

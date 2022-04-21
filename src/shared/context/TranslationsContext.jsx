@@ -10,8 +10,13 @@ const translationsList = {
         character: 'Personaje',
         loadMore: 'Cargar mas',
         quote: 'Cita',
+        noQuotes: 'No hay citas',
+        status: 'Estado',
+        birthday: 'Fecha de nacimiento',
         search: 'Buscar',
         name: 'Nombre',
+        portrayed: 'Representado por',
+        back: 'Volver',
     },
     en: {
         title: 'More characters',
@@ -20,12 +25,17 @@ const translationsList = {
         search: 'Search',
         loadMore: 'Load more',
         quote: 'Quote',
+        noQuotes: 'No quotes',
+        status: 'Status',
+        birthday: 'Birthday',
+        portrayed: 'Portrayed by',
         name: 'Name',
+        back: 'Back',
     },
 };
 
 
-function LanguageProvider({children}) {
+const TranslationsProvider = ({children}) => {
     const [translations, setTranslations] = React.useState({
         langue: 'es',
         translations: translationsList.es,
@@ -44,21 +54,21 @@ function LanguageProvider({children}) {
             {children}
         </TranslationsContext.Provider>
     );
-}
+};
 
-LanguageProvider.propTypes = {
+TranslationsProvider.propTypes = {
     children: PropTypes.node.isRequired,
 };
 
-function useTranslations() {
+const useTranslations = () => {
     const context = React.useContext(TranslationsContext);
     if (context === undefined) {
-        throw new Error('useLanguage must be used within a LanguageProvider');
+        throw new Error('useLanguage must be used within a TranslationProvider');
     }
     return context;
-}
+};
 
-export { LanguageProvider, useTranslations };
+export { TranslationsProvider, useTranslations };
 
 
 

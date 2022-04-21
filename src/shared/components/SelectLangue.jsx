@@ -1,5 +1,5 @@
 import React from 'react';
-import { useTranslations } from '../context/LanguageContext';
+import { useTranslations } from '../context/TranslationsContext';
 
 export default function SelectLangue() {
     const {translations: { lang}, changeLangue} = useTranslations();
