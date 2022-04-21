@@ -1,7 +1,7 @@
 import React from 'react';
 import * as PropTypes from 'prop-types';
 
-const LanguageContext = React.createContext();
+const TranslationsContext = React.createContext();
 
 const translationsList = {
     es: {
@@ -40,9 +40,9 @@ function LanguageProvider({children}) {
     };
 
     return (
-        <LanguageContext.Provider value={{ translations, changeLangue }}>
+        <TranslationsContext.Provider value={{ translations, changeLangue }}>
             {children}
-        </LanguageContext.Provider>
+        </TranslationsContext.Provider>
     );
 }
 
@@ -51,7 +51,7 @@ LanguageProvider.propTypes = {
 };
 
 function useTranslations() {
-    const context = React.useContext(LanguageContext);
+    const context = React.useContext(TranslationsContext);
     if (context === undefined) {
         throw new Error('useLanguage must be used within a LanguageProvider');
     }
