@@ -1,27 +1,22 @@
-import {useEffect, useReducer} from 'react';
+import { useReducer } from 'react';
 import {initialState, CharactersReducer} from '../CharactersReducer';
-import * as Services from '../services/api';
 
-const useCharactersList = ({limit = 10, offset= 0}) => {
-    const [{characters, loading, error }, dispatch] = useReducer(CharactersReducer, initialState  );
+const useCharactersList = ({repository}) => {
+    const [{characters, loading, error }, dispatch] = useReducer(CharactersReducer, initialState);
 
-    const fetchCharacters = async () => {
+    const fetchCharacters = async ({limit, offset}) => {
         dispatch({ type: 'FETCH_CHARACTERS_START' });
         try {
-            const response =  await Services.getCharacters({limit, offset});
+            const response =  await repository.getCharacters({limit, offset});
             const data = await response.json();
             dispatch({ type: 'FETCH_CHARACTERS_SUCCESS', payload: data });
-
+            
         } catch (error) {
             dispatch({ type: 'FETCH_CHARACTERS_FAILURE', payload: error.message });
         }
     };
 
-    useEffect(() => {
-        fetchCharacters();
-    }, [offset]);
-
-    return { characters, loading, error };
+    return { characters, loading, error, fetchCharacters };
 };
 
-export  default useCharactersList;
+export default useCharactersList;

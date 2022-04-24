@@ -1,6 +1,8 @@
+/// <reference types="vitest" />
+/// <reference types="vite/client" />
+
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
-// eslint-disable-next-line no-undef
 const path = require('path');
 
 export default defineConfig({
@@ -14,4 +16,10 @@ export default defineConfig({
         port: 3002,
     },
     plugins: [react()],
+    test: {
+        globals: true,
+        environment: 'jsdom',
+        setupFiles: './src/test/setup.js',
+    },
+
 });
