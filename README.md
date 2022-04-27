@@ -5,7 +5,7 @@ Aplicación para listar y ver detalles de todos los personajes de las series.
  - Realizar un npm install del proyecto.
  - Ejecutar **npm run dev** para ejecutar el proyecto en modo desarrollo.
  - Ejecutar **npm run build** para ejecutar el proyecto en modo producción.
-
+ - Ejecutar **npm run test** para ejecutar los tests.
 
 ## Tecnologías frontend usadas:
  - **ReactJS**:Librería para crear la interfaces de usuario.

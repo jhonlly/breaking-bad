@@ -1,20 +1,31 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import useCharactersDetails from './hooks/useCharacterDetails';
 import PropTypes from 'prop-types';
 import When from '../shared/components/condicional/When';
 import {Spinner} from '../shared/components';
 import { useTranslations } from '../Shared/context/TranslationsContext';
 import BackButton from '../Characters/components/BackButton';
+import * as Services from './services/api';
+
 
 const CharactersDetails = ({params: {id}}) => {
 
-    const { details , quote, error, loading } = useCharactersDetails(id);
+    const { details , quote, error, loading, fetchCharactersDetails } = useCharactersDetails(Services);
     const { translations: { translations: t}} = useTranslations();
 
+    useEffect(() => {
+        id && fetchCharactersDetails(id);
+    }, []);
+
     return (
-        <div className="container place-content-center place-items-center m-3 grid grid-cols-2">
+        <div className="container grid place-content-center place-items-center m-3 grid grid-cols-2">
             <When condition={loading}>
                 <Spinner/>
+            </When>
+            <When condition={error} >
+                <div className="text-center">
+                    <h1>{error}</h1>
+                </div>
             </When>
             <When condition={!loading}>
                 <div className="container h-50 w-50 accent-green-200">
