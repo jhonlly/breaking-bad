@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import useCharactersList from './hooks/useCharactersList';
+import { useCharactersList } from './hooks';
 import { Spinner } from '../Shared/components';
 import { SearchField } from './components/SearchField';
 import When from '../Shared/components/condicional/When';
@@ -12,17 +12,23 @@ function Characters() {
     const [limit]  =  React.useState(10);
 
     const [search, setSearch] = React.useState('');
-    const {characters,loading, fetchCharacters } = useCharactersList({repository});
-    
+    const {characters,loading, fetchCharacters,searchCharacters } = useCharactersList({repository});
+
     const { translations: { translations } } = useTranslations();
 
     useEffect(() => {
         fetchCharacters({offset, limit});
     }, [offset, limit]);
 
+    const onSearch = (event) => {
+        event.preventDefault();
+        if(search !== ''){
+            searchCharacters({name: search});
+        }
+    };
 
-    const onSearch = (e) => {
-        setSearch(e.target.value);
+    const onChangeSearch = (event) => {
+        setSearch(event.target.value);
     };
 
 
@@ -36,7 +42,7 @@ function Characters() {
 
     return (
         <>
-            <SearchField onChange={onSearch} value={search} placeholder={translations.search}/>
+            <SearchField onChange={onChangeSearch} onSearch={onSearch} value={search} placeholder={translations.search}/>
             <When condition={loading}>
                 <div className='grid place-content-center place-items-center h-screen col-auto '>
                     <Spinner/>
@@ -56,13 +62,14 @@ function Characters() {
                     ))}
                 </div>
             </When>
-            {!loading &&
+            {(!loading )&&
                <button
+                   type='button'
                    onClick={onLoadMorData}
                    disabled={isDisabled}
                    className="
-                   w-full 
-                   border-4 border-black
+                    w-full 
+                    border-4 border-black
                     mt-4 rounded-md mb-5 p-2  font-bold disabled:border-gray-300 disabled:text-gray-300">
                    {translations.loadMore}
                </button>

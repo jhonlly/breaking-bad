@@ -5,21 +5,34 @@ const initialState = {
     hasMoreData: true,
 };
 
+export const  ACTIONS = {
+    FETCH_CHARACTERS_START: 'FETCH_CHARACTERS_START',
+    FETCH_CHARACTERS_SUCCESS: 'FETCH_CHARACTERS_SUCCESS',
+    FETCH_CHARACTERS_FAILURE: 'FETCH_CHARACTERS_FAILURE',
+    SEARCH_CHARACTERS_SUCCESS: 'SEARCH_CHARACTERS_SUCCESS',
+};
 
 const CharactersReducer = (state, action) => {
     switch (action.type) {
-    case 'FETCH_CHARACTERS_START':
+    case ACTIONS.FETCH_CHARACTERS_START:
         return {
             ...state,
             loading: true,
         };
-    case 'FETCH_CHARACTERS_SUCCESS':
+    case ACTIONS.FETCH_CHARACTERS_SUCCESS:
         return {
             ...state,
             loading: false,
             characters: [...state.characters, ...action.payload],
         };
-    case 'FETCH_CHARACTERS_FAILURE':
+    case ACTIONS.SEARCH_CHARACTERS_SUCCESS:
+        console.log(action.payload);
+        return {
+            ...state,
+            loading: false,
+            characters: [...action.payload],
+        };  
+    case ACTIONS.FETCH_CHARACTERS_FAILURE:
         return {
             ...state,
             loading: false,

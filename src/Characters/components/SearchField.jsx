@@ -1,16 +1,18 @@
 import React from 'react';
 import * as PropTypes from 'prop-types';
-
 export const SearchField = ({onChange, value, placeholder, onSearch}) => 
-    <form onSubmit={onSearch}>
-        <input
-            type="search"
-            className="w-100 py-2 my-9 w-full rounded border-4 border-gray-900 text-center outline-none  placeholder-gray-500 text-2xl shadow-lg"
-            placeholder={placeholder}
-            onChange={onChange}
-            value={value}
-        />
+
+    <form className="flex items-center justify-center w-100 my-9" onSubmit={onSearch}>
+        <div className="flex border-2 border-gray-900  rounded w-full">
+            <input onChange={onChange} type="text" className="px-4 py-2 w-full text-center outline-none" placeholder="" value={value}/>
+            <button className="px-4 text-white bg-[#045922] font-bold border-l ">
+                {placeholder}
+            </button>
+        </div>
     </form>;
+
+
+
 SearchField.propTypes = {
     onChange: PropTypes.func,
     value: PropTypes.string,

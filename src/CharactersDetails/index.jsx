@@ -18,7 +18,7 @@ const CharactersDetails = ({params: {id}}) => {
     }, []);
 
     return (
-        <div className="container grid place-content-center place-items-center m-3 grid grid-cols-2">
+        <div className="container grid place-content-center place-items-center m-3 grid-cols-2">
             <When condition={loading}>
                 <Spinner/>
             </When>

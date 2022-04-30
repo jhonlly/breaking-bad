@@ -38,5 +38,5 @@ Aplicación para listar y ver detalles de todos los personajes de las series.
     - **context**: En esta carpeta se encuentra el context que se usa para guardar la cadena de idioma.
     - **service**: En esta carpeta están las funciones que realizan llamas a la API.
 
-## Futuras implementaciones:
-- Implementar la búsqueda de personajes por nombre.
+## Futuras implementaciones y correcciones:
+- Limpiar search input y resetear el listado de personajes.
