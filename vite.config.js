@@ -2,13 +2,13 @@
 /// <reference types="vite/client" />
 
 import { defineConfig } from 'vite';
+import { configDefaults} from 'vitest/config';
 import react from '@vitejs/plugin-react';
 const path = require('path');
 
 export default defineConfig({
     resolve: {
         alias: {
-            // eslint-disable-next-line no-undef
             '@': path.resolve(__dirname, 'src'),
         },
     },
@@ -18,8 +18,9 @@ export default defineConfig({
     plugins: [react()],
     test: {
         globals: true,
-        environment: 'jsdom',
+        environment: 'happy-dom',
         setupFiles: './src/test/setup.js',
+        exclude: [...configDefaults.exclude, 'packages/template/*'],
     },
 
 });

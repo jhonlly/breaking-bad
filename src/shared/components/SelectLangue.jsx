@@ -1,10 +1,10 @@
 import React from 'react';
 import { useTranslations } from '../context/TranslationsContext';
 
-export default function SelectLangue() {
-    const {translations: { lang}, changeLangue} = useTranslations();
-
+const SelectLangue = () => {
     
+    const {translations: { lang}, changeLangue} = useTranslations();
+ 
     return (
         <form className='flex justify-end mt-2'>
             <div className="flex items-center">
@@ -23,4 +23,6 @@ export default function SelectLangue() {
             </div>
         </form> 
     );
-}
+};
+
+export default SelectLangue;

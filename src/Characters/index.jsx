@@ -11,8 +11,8 @@ function Characters() {
     const [offset, setOffset]  =  React.useState(0);
     const [limit]  =  React.useState(10);
 
-    const [search, setSearch] = React.useState('');
-    const {characters,loading, fetchCharacters,searchCharacters } = useCharactersList({repository});
+    const [query, setQuery] = React.useState('');
+    const {characters,loading, fetchCharacters,searchCharacters, clearSearch } = useCharactersList({repository});
 
     const { translations: { translations } } = useTranslations();
 
@@ -22,13 +22,16 @@ function Characters() {
 
     const onSearch = (event) => {
         event.preventDefault();
-        if(search !== ''){
-            searchCharacters({name: search});
+        if(query !== ''){
+            searchCharacters({query});
+        }else{
+            clearSearch();
+            fetchCharacters({offset, limit});
         }
     };
 
     const onChangeSearch = (event) => {
-        setSearch(event.target.value);
+        setQuery(event.target.value);
     };
 
 
@@ -42,7 +45,7 @@ function Characters() {
 
     return (
         <>
-            <SearchField onChange={onChangeSearch} onSearch={onSearch} value={search} placeholder={translations.search}/>
+            <SearchField onChange={onChangeSearch} onSearch={onSearch} value={query} placeholder={translations.search}/>
             <When condition={loading}>
                 <div className='grid place-content-center place-items-center h-screen col-auto '>
                     <Spinner/>

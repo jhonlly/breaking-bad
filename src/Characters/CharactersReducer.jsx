@@ -10,6 +10,7 @@ export const  ACTIONS = {
     FETCH_CHARACTERS_SUCCESS: 'FETCH_CHARACTERS_SUCCESS',
     FETCH_CHARACTERS_FAILURE: 'FETCH_CHARACTERS_FAILURE',
     SEARCH_CHARACTERS_SUCCESS: 'SEARCH_CHARACTERS_SUCCESS',
+    SEARCH_CHARACTERS_RESET: 'SEARCH_CHARACTERS_RESET',
 };
 
 const CharactersReducer = (state, action) => {
@@ -26,12 +27,19 @@ const CharactersReducer = (state, action) => {
             characters: [...state.characters, ...action.payload],
         };
     case ACTIONS.SEARCH_CHARACTERS_SUCCESS:
-        console.log(action.payload);
+
         return {
             ...state,
             loading: false,
             characters: [...action.payload],
         };  
+    case ACTIONS.SEARCH_CHARACTERS_RESET:
+        return {
+            ...state,
+            loading: false,
+            characters: [ ],
+        };      
+
     case ACTIONS.FETCH_CHARACTERS_FAILURE:
         return {
             ...state,
